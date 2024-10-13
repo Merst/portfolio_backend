@@ -1,22 +1,31 @@
-from django.contrib.auth.models import Group, User
-from rest_framework import permissions, viewsets
+from backend.models import Project
+from django.contrib.auth.models import User
+from backend.serializers import ProjectSerializer, UserSerializer
+from rest_framework import generics
 
-from tutorial.quickstart.serializers import GroupSerializer, UserSerializer
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    This viewset automatically provides `list` and `retrieve` actions.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
-
-class GroupViewSet(viewsets.ModelViewSet):
+class ProjectViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    This ViewSet automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
     """
-    queryset = Group.objects.all().order_by('name')
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer

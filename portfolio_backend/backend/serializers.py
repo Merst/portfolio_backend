@@ -1,14 +1,25 @@
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import User
 from rest_framework import serializers
+from backend.models import Project, Skill, Category
+
+class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['url', 'title', 'skill', 'summary', 'github_link', 'older_project']
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = ['id', 'name', 'category']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups']
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
-        fields = ['url', 'name']
+        fields = ['id', 'username', 'snippets']
