@@ -6,10 +6,8 @@ from backend import views
 # Create a router and register our ViewSets with it.
 router = DefaultRouter()
 router.register(r'projects', views.ProjectViewSet, basename='project')
-router.register(r'users', views.UserViewSet, basename='user')
 router.register(r'skills', views.SkillViewSet, basename='skill')
-router.register(r'category', views.CategoryViewSet, basename='Category')
-
+router.register(r'categories', views.CategoryViewSet, basename='category')
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
