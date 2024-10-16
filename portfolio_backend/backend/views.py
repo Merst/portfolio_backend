@@ -36,4 +36,4 @@ class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['skills']
+    filterset_fields = ['older_project', 'skills']
