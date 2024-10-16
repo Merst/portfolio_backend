@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from django_filters.rest_framework import DjangoFilterBackend
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -42,3 +43,5 @@ class ProjectViewSet(viewsets.ModelViewSet):
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['older_project']
