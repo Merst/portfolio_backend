@@ -10,7 +10,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'projects': reverse('project-list', request=request, format=format)
+        'projects': reverse('project-list', request=request, format=format),
+        'skills': reverse('skill-list', request=request, format=format)
     })
 
 class SkillViewSet(viewsets.ReadOnlyModelViewSet):

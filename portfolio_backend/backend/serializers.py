@@ -5,6 +5,7 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
         fields = ['url', 'title', 'skills', 'summary', 'github_link', 'older_project']
+        depth = 3
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:
