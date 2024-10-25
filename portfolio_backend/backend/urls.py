@@ -5,7 +5,7 @@ from backend import views
 
 # Create a router and register our ViewSets with it.
 router = DefaultRouter()
-router.register(r'projects', views.ProjectViewSet, basename='project')
+router.register(r'api/projects', views.ProjectViewSet, basename='project')
 router.register(r'skills', views.SkillViewSet, basename='skill')
 router.register(r'categories', views.CategoryViewSet, basename='category')
 
