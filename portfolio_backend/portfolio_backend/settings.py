@@ -121,6 +121,7 @@ USE_I18N = True
 USE_TZ = True
 
 # This is the port of the Front-End.
+
 CORS_ORIGIN_WHITELIST = ['http://localhost:81','http://0.0.0.0:8000']
 
 # Static files are currently served by Front-End (Could be changed, however.)
