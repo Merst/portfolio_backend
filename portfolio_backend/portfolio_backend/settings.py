@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e1b=t*tyt2pt443vq^&*)de%%7dasa1@92u*++cm%u3o&xycj)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','0.0.0.0']
 
 
 # Application definition
@@ -89,8 +89,8 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'waspasswordtooshort!?',
-        'HOST': 'localhost',
-        'PORT': '5434',
+        'HOST': 'portfolio_db',
+        'PORT': '5432',
     }}
 
 
@@ -121,7 +121,7 @@ USE_I18N = True
 USE_TZ = True
 
 # This is the port of the Front-End.
-CORS_ORIGIN_WHITELIST = ('http://localhost:80','http://localhost:88')
+CORS_ORIGIN_WHITELIST = ['http://localhost:81','http://0.0.0.0:8000']
 
 # Static files are currently served by Front-End (Could be changed, however.)
 STATIC_URL = 'static/'
