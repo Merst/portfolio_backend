@@ -17,11 +17,18 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
-SECRET_KEY = os.environ["SECRET_KEY"]
 
-# https://pypi.org/project/django-cors-headers/
-CORS_ORIGIN_WHITELIST = [os.environ["FRONTEND_URL"],]
-ALLOWED_HOSTS = [os.environ["FRONTEND_URL"],]
+try:
+    SECRET_KEY = os.environ["SECRET_KEY"]
+except KeyError as e:
+    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
+
+try:
+    # https://pypi.org/project/django-cors-headers/
+    CORS_ORIGIN_WHITELIST = [".stephane-verville-vohl.com"]
+    ALLOWED_HOSTS = [".stephane-verville-vohl.com"]
+except KeyError as e:
+    raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
 # https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {

@@ -1,0 +1,48 @@
+# This version should be ran on your backend 
+# VM 
+#
+
+version: '3.1'
+
+services:
+  
+  portfolio_api:
+    container_name: portfolio_api
+    build:
+      context: ./portfolio_backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - portfolio_network
+    depends_on:
+      - portfolio_db
+
+  portfolio_webserver:
+    container_name: portfolio_webserver
+    build:
+      context: ./webserver
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - portfolio_network
+    depends_on:
+      - portfolio_api
+
+  portfolio_ui:
+    container_name: portfolio_ui
+    build:
+      context: ./portfolio_frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "81:80"
+    networks:
+      - portfolio_network
+    depends_on:
+      - portfolio_api
+
+networks:
+  portfolio_network:
+    driver: bridge
+ 
